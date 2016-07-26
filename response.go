@@ -166,7 +166,7 @@ func httpRequestHeader(req *http.Request) (hdr []byte, err error) {
 	}
 	req.Header.Set("Host", host)
 
-	uri := req.RequestURI
+	uri := req.URL.String()
 
 	fmt.Fprintf(buf, "%s %s %s\r\n", valueOrDefault(req.Method, "GET"), uri, valueOrDefault(req.Proto, "HTTP/1.1"))
 	req.Header.WriteSubset(buf, map[string]bool{
